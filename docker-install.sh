@@ -22,11 +22,15 @@ else
 	exit 3
 fi
 
-if mkdir /etc/docker && mv daemon.json /etc/docker/daemon.json
+if mkdir /etc/docker | grep "exist"
+then 
+	echo "The dir is existed."
+
+if mv daemon.json /etc/docker/daemon.json
 then
-	echo "The dir is made."
+	echo "The config is moved."
 else
-	echo "The dir is to make faild."
+	echo "The config is not moved."
 	exit 3
 fi
 
