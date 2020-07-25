@@ -27,7 +27,7 @@ then
 	echo "The dir is existed."
 fi
 
-if mv daemon.json /etc/docker/daemon.json
+if sudo mv daemon.json /etc/docker/daemon.json
 then
 	echo "The config is moved."
 else
