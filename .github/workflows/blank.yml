@@ -21,7 +21,8 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
+    - name: Chmod 
+      run: chmod 777 *
     # Runs a single command using the runners shell
     - name: Run Docker Install
       run: ./docker-install.sh
