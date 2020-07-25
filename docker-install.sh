@@ -25,6 +25,7 @@ fi
 if mkdir /etc/docker | grep "exist"
 then 
 	echo "The dir is existed."
+fi
 
 if mv daemon.json /etc/docker/daemon.json
 then
