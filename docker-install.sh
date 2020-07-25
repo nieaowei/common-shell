@@ -19,7 +19,7 @@ then
 	echo "The dir is existed."
 fi
 
-if sudo echo '{"registry-mirrors": ["https://9cpn8tt6.mirror.aliyuncs.com"]}' >> /etc/docker/daemon.json
+if sudo echo '{"registry-mirrors": ["https://9cpn8tt6.mirror.aliyuncs.com"]}' > /etc/docker/daemon.json
 then
 	echo "The config is moved."
 else
