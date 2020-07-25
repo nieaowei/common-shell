@@ -19,7 +19,7 @@ then
 	echo "The dir is existed."
 fi
 
-if echo "{     
+if sudo echo "{     
   "registry-mirrors": ["https://9cpn8tt6.mirror.aliyuncs.com"]
 }" >> /etc/docker/daemon.json
 then
