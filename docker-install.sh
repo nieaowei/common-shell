@@ -14,20 +14,14 @@ else
 	exit 1
 fi
 
-if wget https://raw.githubusercontent.com/nieaowei/Express-cabinet-access-system/master/Java/daemon.json
-then
-	echo "The dir is made."
-else
-	echo "The dir is to make faild."
-	exit 3
-fi
-
 if mkdir /etc/docker | grep "exist"
 then 
 	echo "The dir is existed."
 fi
 
-if sudo mv daemon.json /etc/docker/daemon.json
+if echo "{     
+  "registry-mirrors": ["https://9cpn8tt6.mirror.aliyuncs.com"]
+}" >> /etc/docker/daemon.json
 then
 	echo "The config is moved."
 else
