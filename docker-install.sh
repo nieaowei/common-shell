@@ -14,12 +14,12 @@ else
 	exit 1
 fi
 
-if chmod 777 /etc/docker/daemon.json | grep "chmod"
+if sudo chmod 777 /etc/docker/daemon.json | grep "chmod"
 then 
 	echo "The file is existed."
 fi
 
-if mkdir /etc/docker | grep "mkdir"
+if sudo mkdir /etc/docker | grep "mkdir"
 then 
 	echo "The dir is existed."
 fi
