@@ -22,7 +22,7 @@ else
 	exit 3
 fi
 
-if mv daemon.json /etc/docker/daemon.json
+if mkdir /etc/docker && mv daemon.json /etc/docker/daemon.json
 then
 	echo "The dir is made."
 else
@@ -46,12 +46,4 @@ then
 	echo "The Docker autonal starting is set."
 else
 	echo "The Docker autonal start seting is faild."
-fi
-
-if docker pull rabbitmq
-then
-	echo "The image of rabbitmq is pull."
-else
-	echo "The image of rabbitmq pulling is faild.Your network is probrably faild."
-	exit 3
 fi
