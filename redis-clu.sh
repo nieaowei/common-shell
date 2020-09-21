@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# by nekilc
 portStart=7000
 number=3
 requirepass=1234
