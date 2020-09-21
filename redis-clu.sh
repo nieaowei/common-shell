@@ -1,4 +1,4 @@
-# by nieaowei
+#!/bin/bash
 portStart=7000
 number=3
 requirepass=1234
