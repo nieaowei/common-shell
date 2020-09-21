@@ -6,4 +6,4 @@
 
 Redis集群:
 
-  `curl https://raw.githubusercontent.com/nieaowei/common-shell/master/redis-clu.sh|bash`
+  `sh -c "$(curl -fsSL https://raw.githubusercontent.com/nieaowei/common-shell/master/redis-clu.sh)"`
