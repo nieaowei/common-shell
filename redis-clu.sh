@@ -108,12 +108,13 @@ genConfig(){
 	mkdir -p ./${port}/conf
 	PORT=${port} TEMP=${ip} ipStart=${ipStart} requirepass=${requirepass} masterauth=${masterauth} envsubst < ./template.tmpl > ./${port}/conf/redis.conf
 	mkdir -p ./${port}/data;
-	echo "${ipStart}.${ip}:${port}"
 	if [ ! -n "$domain" ]
     then
 		allNode=${allNode}"${ipStart}.${ip}:${port} "
+		echo "${ipStart}.${ip}:${port}"
 	else
 		allNode=${allNode}"${domain}:${port} "
+		echo "${domain}:${port}"
     fi;
 	done
 }
