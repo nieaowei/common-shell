@@ -7,6 +7,7 @@ requirepass=1234
 masterauth=1234
 net="redis-bridge"
 ipStart="172.19.0"
+domain=""
 
 params(){
 
@@ -65,15 +66,18 @@ params(){
 	echo "请输入网段起始:(默认172.19.0.0/16)"
 	read ipStart
 	if [ ! -n "$ipStart" ]
-        then
+    then
                 ipStart="172.19.0.0/16"
-        fi;
+    fi;
 	if docker network create --driver bridge --subnet=${ipStart} ${net}
 	then
 		ipStart=${ipStart%.*/*}
 	else
 		exit 1
 	fi
+	echo "请输入外网访问地址:(默认不开启外网访问)"
+	read domain
+	
 	echo "PortStart:${portStart},Number:${number}"
 	echo "Network:${net}"
 	echo "IpStart:${ipStart}"
@@ -105,7 +109,12 @@ genConfig(){
 	PORT=${port} TEMP=${ip} ipStart=${ipStart} requirepass=${requirepass} masterauth=${masterauth} envsubst < ./template.tmpl > ./${port}/conf/redis.conf
 	mkdir -p ./${port}/data;
 	echo "${ipStart}.${ip}:${port}"
-	allNode=${allNode}"${ipStart}.${ip}:${port} "
+	if [ ! -n "$domain" ]
+    then
+		allNode=${allNode}"${ipStart}.${ip}:${port} "
+	else
+		allNode=${allNode}"${domain}:${port} "
+    fi;
 	done
 }
 
