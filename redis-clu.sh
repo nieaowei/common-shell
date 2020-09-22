@@ -93,7 +93,7 @@ genTemplate(){
 	cluster-enabled yes
 	cluster-config-file nodes.conf
 	cluster-node-timeout 5000
-	cluster-announce-ip ${ipStart}.${TEMP}
+	cluster-announce-ip ${ip}
 	cluster-announce-port ${PORT}
 	cluster-announce-bus-port 1${PORT}
 	appendonly yes' > ./template.tmpl
@@ -106,14 +106,16 @@ genConfig(){
 	base=portStart
 	ip=$[port-base+2]
 	mkdir -p ./${port}/conf
-	PORT=${port} TEMP=${ip} ipStart=${ipStart} requirepass=${requirepass} masterauth=${masterauth} envsubst < ./template.tmpl > ./${port}/conf/redis.conf
+#	PORT=${port} ip=${ipStart}.${ip} requirepass=${requirepass} masterauth=${masterauth} envsubst < ./template.tmpl > ./${port}/conf/redis.conf
 	mkdir -p ./${port}/data;
 	if [ ! -n "$domain" ]
     then
 		allNode=${allNode}"${ipStart}.${ip}:${port} "
+		PORT=${port} ip=${ipStart}.${ip} requirepass=${requirepass} masterauth=${masterauth} envsubst < ./template.tmpl > ./${port}/conf/redis.conf
 		echo "${ipStart}.${ip}:${port}"
 	else
 		allNode=${allNode}"${domain}:${port} "
+		PORT=${port} ip=${domain} requirepass=${requirepass} masterauth=${masterauth} envsubst < ./template.tmpl > ./${port}/conf/redis.conf
 		echo "${domain}:${port}"
     fi;
 	done
